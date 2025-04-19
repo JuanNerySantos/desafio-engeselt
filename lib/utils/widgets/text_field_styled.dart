@@ -4,11 +4,13 @@ class TextFieldStyled extends StatefulWidget {
   final String hintText;
   final IconData icon;
   final IconData? suffixIcon;
+  final bool obscureText;
 
   const TextFieldStyled({
     super.key,
     required this.hintText,
     required this.icon,
+    required this.obscureText,
     this.suffixIcon,
   });
 
@@ -22,7 +24,7 @@ class _TextFieldStyledState extends State<TextFieldStyled> {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 30),
       child: TextField(
-        obscureText: true,
+        obscureText: widget.obscureText,
         decoration: InputDecoration(
           filled: true,
           fillColor: Color(0x3FF4D16F),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace/utils/list_states.dart';
+import 'package:marketplace/utils/widgets/text_button_styled.dart';
+import 'package:marketplace/utils/widgets/text_field_styled.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -39,74 +41,31 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 const SizedBox(height: 20),
 
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 30),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0x3FF4D16F),
-                      hintText: "Nome da loja",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide.none,
-                      ),
-                      prefixIcon: Icon(Icons.store, color: Color(0xff6b4226)),
-                    ),
-                  ),
+                TextFieldStyled(
+                  hintText: "Nome da loja",
+                  icon: Icons.store,
+                  obscureText: false,
                 ),
                 const SizedBox(height: 20),
 
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 30),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0x3FF4D16F),
-                      hintText: "Latitude e longitude",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide.none,
-                      ),
-                      prefixIcon: Icon(Icons.explore, color: Color(0xff6b4226)),
-                    ),
-                  ),
+                TextFieldStyled(
+                  hintText: "Latitude e longitude",
+                  icon: Icons.explore,
+                  obscureText: false,
                 ),
                 const SizedBox(height: 20),
 
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 30),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0x3FF4D16F),
-                      hintText: "CEP(apenas números)",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide.none,
-                      ),
-                      prefixIcon: Icon(Icons.place, color: Color(0xff6b4226)),
-                    ),
-                  ),
+                TextFieldStyled(
+                  hintText: "CEP",
+                  icon: Icons.place,
+                  obscureText: false,
                 ),
                 const SizedBox(height: 20),
 
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 30),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0x3FF4D16F),
-                      hintText: "Nome da rua(com número)",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide.none,
-                      ),
-                      prefixIcon: Icon(
-                        Icons.edit_location_alt,
-                        color: Color(0xff6b4226),
-                      ),
-                    ),
-                  ),
+                TextFieldStyled(
+                  hintText: "Nome da rua(com número)",
+                  icon: Icons.edit_location_alt,
+                  obscureText: false,
                 ),
                 const SizedBox(height: 20),
 
@@ -141,43 +100,17 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 const SizedBox(height: 20),
 
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 30),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0x3FF4D16F),
-                      hintText: "Cidade",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide.none,
-                      ),
-                      prefixIcon: Icon(
-                        Icons.location_city,
-                        color: Color(0xff6b4226),
-                      ),
-                    ),
-                  ),
+                TextFieldStyled(
+                  hintText: "Cidade",
+                  icon: Icons.location_city,
+                  obscureText: false,
                 ),
                 const SizedBox(height: 20),
 
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 30),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0x3FF4D16F),
-                      hintText: "Bairro",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide.none,
-                      ),
-                      prefixIcon: Icon(
-                        Icons.location_city,
-                        color: Color(0xff6b4226),
-                      ),
-                    ),
-                  ),
+                TextFieldStyled(
+                  hintText: "Bairro",
+                  icon: Icons.location_city,
+                  obscureText: false,
                 ),
                 const SizedBox(height: 20),
 
@@ -201,62 +134,25 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 const SizedBox(height: 20),
 
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 30),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0x3FF4D16F),
-                      hintText: "Password",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide.none,
-                      ),
-                      prefixIcon: Icon(Icons.lock, color: Color(0xff6b4226)),
-                      suffixIcon: Icon(
-                        Icons.visibility,
-                        color: Color(0xff6b4226),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 30),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0x3FF4D16F),
-                      hintText: "Confirm password",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide.none,
-                      ),
-                      prefixIcon: Icon(Icons.lock, color: Color(0xff6b4226)),
-                      suffixIcon: Icon(
-                        Icons.visibility,
-                        color: Color(0xff6b4226),
-                      ),
-                    ),
-                  ),
+                TextFieldStyled(
+                  hintText: "Password",
+                  icon: Icons.lock,
+                  suffixIcon: Icons.visibility,
+                  obscureText: true,
                 ),
                 const SizedBox(height: 20),
 
-                Container(
-                  width: double.infinity,
-                  margin: EdgeInsets.symmetric(horizontal: 30),
-                  child: TextButton(
-                    onPressed: () => {},
-                    style: TextButton.styleFrom(
-                      backgroundColor: Color(0xffc8e6c9),
-                    ),
-                    child: Text(
-                      "Cadastrar",
-                      style: TextStyle(color: Color(0xff6b4226)),
-                    ),
-                  ),
+                TextFieldStyled(
+                  hintText: "Confirm password",
+                  icon: Icons.visibility,
+                  suffixIcon: Icons.visibility,
+                  obscureText: true,
+                ),
+                const SizedBox(height: 20),
+
+                TextButtonStyled(
+                  buttonName: "Cadastrar",
+                  backgroundColor: Color(0xffc8e6c9),
                 ),
               ],
             ),
