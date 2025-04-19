@@ -62,6 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 30),
                     child: TextField(
+                      obscureText: true,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Color(0x3FF4D16F),
