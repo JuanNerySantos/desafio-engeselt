@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace/pages/login_page.dart';
 import 'package:marketplace/pages/profile_details_page.dart';
+import 'package:marketplace/pages/search_page.dart';
 import 'package:marketplace/pages/terms_privacy_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,10 +12,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int indexPage = 0;
+  PageController controller = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(title: Text("DoceHub")),
         endDrawer: Drawer(
           backgroundColor: Color(0xfff8bbd0),
           child: Column(
@@ -87,7 +91,61 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        appBar: AppBar(title: Text("DoceHub")),
+        body: Column(
+          children: [
+            Expanded(
+              child: PageView(
+                controller: controller,
+                onPageChanged: (index) {
+                  setState(() {
+                    indexPage = index;
+                  });
+                },
+                children: [
+                  Container(),
+                  SearchPage(),
+                  Container(),
+                  SearchPage(),
+                  Container(),
+                  SearchPage(),
+                  Container(),
+                  SearchPage(),
+                  Container(),
+                  SearchPage(),
+                ],
+              ),
+            ),
+            BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: Color(0xff6b4226),
+              selectedItemColor: Color(0xffc8e6c9),
+              unselectedItemColor: Color(0xfff8bbd0),
+              onTap: (index) {
+                controller.jumpToPage(index);
+              },
+              currentIndex: indexPage,
+              items: [
+                BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
+                BottomNavigationBarItem(
+                  label: "Adicionar",
+                  icon: Icon(Icons.add_box_rounded),
+                ),
+                BottomNavigationBarItem(
+                  label: "Procurar",
+                  icon: Icon(Icons.search),
+                ),
+                BottomNavigationBarItem(
+                  label: "Favoritos",
+                  icon: Icon(Icons.favorite),
+                ),
+                BottomNavigationBarItem(
+                  label: "Postagem",
+                  icon: Icon(Icons.person),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
