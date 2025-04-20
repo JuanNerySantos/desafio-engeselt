@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace/utils/list_states.dart';
-import 'package:marketplace/utils/widgets/text_button_styled.dart';
-import 'package:marketplace/utils/widgets/text_field_styled.dart';
+import 'package:marketplace/utils/widgets/auth/text_button_styled.dart';
+import 'package:marketplace/utils/widgets/auth/text_field_styled.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class SignUpPage extends StatefulWidget {

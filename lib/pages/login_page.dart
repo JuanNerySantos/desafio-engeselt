@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace/utils/widgets/text_button_styled.dart';
-import 'package:marketplace/utils/widgets/text_field_styled.dart';
+import 'package:marketplace/utils/widgets/auth/text_button_styled.dart';
+import 'package:marketplace/utils/widgets/auth/text_field_styled.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
