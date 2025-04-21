@@ -69,18 +69,7 @@ class _HomePageState extends State<HomePage> {
                     indexPage = index;
                   });
                 },
-                children: [
-                  Container(),
-                  SearchPage(),
-                  Container(),
-                  SearchPage(),
-                  Container(),
-                  SearchPage(),
-                  Container(),
-                  SearchPage(),
-                  Container(),
-                  SearchPage(),
-                ],
+                children: [Container(), Container(), SearchPage(), Container()],
               ),
             ),
             BottomNavigationBar(

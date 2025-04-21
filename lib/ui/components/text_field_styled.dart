@@ -27,7 +27,7 @@ class _TextFieldStyledState extends State<TextFieldStyled> {
         obscureText: widget.obscureText,
         decoration: InputDecoration(
           filled: true,
-          fillColor: Color(0x3FF4D16F),
+          fillColor: Color.fromARGB(176, 244, 209, 111),
           hintText: widget.hintText,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
