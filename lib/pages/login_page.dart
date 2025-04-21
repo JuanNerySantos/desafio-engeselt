@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace/utils/widgets/auth/text_button_styled.dart';
-import 'package:marketplace/utils/widgets/auth/text_field_styled.dart';
+import 'package:marketplace/ui/components/auth_text_button_styled.dart';
+import 'package:marketplace/ui/components/text_field_styled.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -59,14 +59,14 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 30),
 
-                  TextButtonStyled(
+                  AuthTextButtonStyled(
                     buttonName: "Login",
                     backgroundColor: Color(0xffc8e6c9),
                   ),
 
-                  TextButtonStyled(buttonName: "Criar conta"),
+                  AuthTextButtonStyled(buttonName: "Criar conta"),
 
-                  TextButtonStyled(buttonName: "Esqueci a senha"),
+                  AuthTextButtonStyled(buttonName: "Esqueci a senha"),
                 ],
               ),
             ),

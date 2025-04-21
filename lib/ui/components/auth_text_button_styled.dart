@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class TextButtonStyled extends StatelessWidget {
+class AuthTextButtonStyled extends StatelessWidget {
   final String buttonName;
   final Color? backgroundColor;
-  const TextButtonStyled({
+  const AuthTextButtonStyled({
     super.key,
     required this.buttonName,
     this.backgroundColor,
