@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:marketplace/ui/components/auth_text_button_styled.dart';
 import 'package:marketplace/ui/components/text_field_styled.dart';
 import 'package:marketplace/utils/list_states.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:marketplace/utils/mask_phone.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -13,11 +13,6 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   String? _selectedState;
-
-  final _controllerPhone = TextEditingController();
-
-  final phoneMask = MaskTextInputFormatter(mask: '(##) #####-####');
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -117,7 +112,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 30),
                   child: TextField(
-                    controller: _controllerPhone,
+                    controller: controllerPhone,
                     keyboardType: TextInputType.phone,
                     inputFormatters: [phoneMask],
                     decoration: InputDecoration(
