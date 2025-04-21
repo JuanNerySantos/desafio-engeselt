@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:marketplace/pages/help_page.dart';
 import 'package:marketplace/pages/login_page.dart';
 import 'package:marketplace/pages/profile_details_page.dart';
 import 'package:marketplace/pages/search_page.dart';
 import 'package:marketplace/pages/terms_privacy_page.dart';
+import 'package:marketplace/ui/components/home_text_button_styled.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,69 +26,35 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               SizedBox(height: 40),
-              TextButton(
-                onPressed:
-                    () => {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ProfileDetailsPage(),
-                        ),
-                      ),
-                    },
-                child: Row(
-                  children: [
-                    Icon(Icons.person, size: 25, color: Color(0xff6b4226)),
-                    Text(
-                      "Dados cadastrais",
-                      style: TextStyle(fontSize: 20, color: Color(0xff6b4226)),
-                    ),
-                  ],
-                ),
+              HomeTextButtonStyled(
+                nameButton: "Dados cadastrais",
+                icon: Icons.person,
+                functionPage: () => const ProfileDetailsPage(),
+                color: Color(0xff6b4226),
               ),
               SizedBox(height: 15),
 
-              TextButton(
-                onPressed:
-                    () => {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => TermsPrivacyPage(),
-                        ),
-                      ),
-                    },
-                child: Row(
-                  children: [
-                    Icon(Icons.description, size: 25, color: Color(0xff6b4226)),
-                    Text(
-                      "Termos de uso e privacidade",
-                      style: TextStyle(fontSize: 20, color: Color(0xff6b4226)),
-                    ),
-                  ],
-                ),
+              HomeTextButtonStyled(
+                nameButton: "Termos de uso e privacidade",
+                icon: Icons.description,
+                functionPage: () => TermsPrivacyPage(),
+                color: Color(0xff6b4226),
+              ),
+              SizedBox(height: 15),
+
+              HomeTextButtonStyled(
+                nameButton: "Suporte",
+                icon: Icons.help_outline,
+                functionPage: () => HelpPage(),
+                color: Color(0xff6b4226),
               ),
 
               Spacer(),
-              TextButton(
-                onPressed:
-                    () => {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
-                      ),
-                    },
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Icon(Icons.exit_to_app, color: Colors.red, size: 25),
-                    SizedBox(width: 8),
-                    Text(
-                      'Sair do aplicativo',
-                      style: TextStyle(color: Colors.red, fontSize: 20),
-                    ),
-                  ],
-                ),
+              HomeTextButtonStyled(
+                nameButton: "Sair do aplicativo",
+                icon: Icons.exit_to_app,
+                functionPage: () => LoginPage(),
+                color: const Color(0xFFF44336),
               ),
             ],
           ),
