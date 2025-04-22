@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace/pages/auth/signup_page.dart';
 import 'package:marketplace/pages/home/home_page.dart';
+import 'package:marketplace/services/validate_login.dart';
 import 'package:marketplace/ui/components/text_button_styled.dart';
 import 'package:marketplace/ui/components/text_field_styled.dart';
 
@@ -16,8 +17,6 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = TextEditingController(
     text: "",
   );
-
-  List loginAuth = [];
 
   @override
   Widget build(BuildContext context) {
@@ -71,13 +70,25 @@ class _LoginPageState extends State<LoginPage> {
                   TextButtonStyled(
                     buttonName: "Login",
                     color: Color(0xffc8e6c9),
-                    onPressed: () {
-                      setState(() {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
-                        );
-                      });
+                    onPressed: () async {
+                      final validate = ValidatorLoginService(
+                        email: emailController.text,
+                        password: passwordController.text,
+                        context: context,
+                      );
+
+                      if (validate.validatorLogin()) {
+                        setState(() {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return HomePage();
+                              },
+                            ),
+                          );
+                        });
+                      }
                     },
                   ),
 
