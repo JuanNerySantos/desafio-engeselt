@@ -11,6 +11,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  final TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +50,7 @@ class _SearchPageState extends State<SearchPage> {
               hintText: "Buscar estabelicmento",
               icon: Icons.search,
               obscureText: false,
+              controller: searchController,
             ),
           ),
         ],
