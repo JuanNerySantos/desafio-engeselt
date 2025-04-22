@@ -5,7 +5,7 @@ void messageError(String messageError, BuildContext context) {
     SnackBar(
       content: Text(messageError.toString()),
       backgroundColor: Colors.red,
-      duration: Duration(seconds: 10),
+      duration: Duration(seconds: 4),
     ),
   );
 }
