@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace/ui/components/auth_text_button_styled.dart';
+import 'package:marketplace/ui/components/text_button_styled.dart';
 import 'package:marketplace/ui/components/text_field_styled.dart';
 import 'package:marketplace/utils/list_states.dart';
 import 'package:marketplace/utils/mask_phone.dart';
@@ -12,6 +12,30 @@ class ProfileDetailsPage extends StatefulWidget {
 }
 
 class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
+  final TextEditingController nameStoreController = TextEditingController(
+    text: "",
+  );
+
+  final TextEditingController emailController = TextEditingController(text: "");
+
+  final TextEditingController latlongController = TextEditingController(
+    text: "",
+  );
+  final TextEditingController cepController = TextEditingController(text: "");
+  final TextEditingController streetController = TextEditingController(
+    text: "",
+  );
+  final TextEditingController cityController = TextEditingController(text: "");
+  final TextEditingController neighborhoodController = TextEditingController(
+    text: "",
+  );
+  final TextEditingController passwordController = TextEditingController(
+    text: "",
+  );
+  final TextEditingController confirmPasswordController = TextEditingController(
+    text: "",
+  );
+
   @override
   Widget build(BuildContext context) {
     String? selectedState;
@@ -36,6 +60,15 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                 hintText: "Nome da loja",
                 icon: Icons.store,
                 obscureText: false,
+                controller: SearchController(),
+              ),
+              const SizedBox(height: 20),
+
+              TextFieldStyled(
+                hintText: "E-mail",
+                icon: Icons.store,
+                obscureText: false,
+                controller: emailController,
               ),
               const SizedBox(height: 20),
 
@@ -43,6 +76,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                 hintText: "Latitude e longitude",
                 icon: Icons.explore,
                 obscureText: false,
+                controller: latlongController,
               ),
               const SizedBox(height: 20),
 
@@ -50,6 +84,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                 hintText: "CEP",
                 icon: Icons.place,
                 obscureText: false,
+                controller: cepController,
               ),
               const SizedBox(height: 20),
 
@@ -57,6 +92,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                 hintText: "Nome da rua(com número)",
                 icon: Icons.edit_location_alt,
                 obscureText: false,
+                controller: streetController,
               ),
               const SizedBox(height: 20),
 
@@ -66,7 +102,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                 child: DropdownButtonFormField<String>(
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Color(0x3FF4D16F),
+                    fillColor: Color(0xB5F4D16F),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
                       borderSide: BorderSide.none,
@@ -95,6 +131,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                 hintText: "Cidade",
                 icon: Icons.location_city,
                 obscureText: false,
+                controller: cityController,
               ),
               const SizedBox(height: 20),
 
@@ -102,6 +139,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                 hintText: "Bairro",
                 icon: Icons.location_city,
                 obscureText: false,
+                controller: neighborhoodController,
               ),
               const SizedBox(height: 20),
 
@@ -113,7 +151,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                   inputFormatters: [phoneMask],
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Color(0x3FF4D16F),
+                    fillColor: Color(0xB5F4D16F),
                     hintText: "Telefone",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
@@ -130,13 +168,16 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                 icon: Icons.lock,
                 suffixIcon: Icons.visibility,
                 obscureText: true,
+                controller: passwordController,
               ),
               const SizedBox(height: 20),
 
-              AuthTextButtonStyled(
+              TextButtonStyled(
                 buttonName: "Alterar",
-                backgroundColor: Color(0xffc8e6c9),
+                color: Color(0xffc8e6c9),
+                onPressed: () {},
               ),
+              SizedBox(height: 20),
             ],
           ),
         ),
