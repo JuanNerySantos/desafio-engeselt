@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace/pages/home_page.dart';
+import 'package:marketplace/pages/home/home_page.dart';
 import 'package:marketplace/ui/components/text_button_styled.dart';
 import 'package:marketplace/ui/components/text_field_styled.dart';
 import 'package:marketplace/utils/list_states.dart';

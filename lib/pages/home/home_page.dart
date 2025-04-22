@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace/pages/help_page.dart';
-import 'package:marketplace/pages/login_page.dart';
-import 'package:marketplace/pages/profile_details_page.dart';
-import 'package:marketplace/pages/search_page.dart';
-import 'package:marketplace/pages/terms_privacy_page.dart';
+import 'package:marketplace/pages/auth/help_page.dart';
+import 'package:marketplace/pages/auth/login_page.dart';
+import 'package:marketplace/pages/auth/profile_details_page.dart';
+import 'package:marketplace/pages/navegation/search_page.dart';
+import 'package:marketplace/pages/terms/terms_privacy_page.dart';
 import 'package:marketplace/ui/components/home_text_button_styled.dart';
 
 class HomePage extends StatefulWidget {

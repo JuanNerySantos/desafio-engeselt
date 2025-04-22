@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace/pages/home_page.dart';
+import 'package:marketplace/pages/auth/login_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
             ), // cor do texto e ícones
           ),
         ),
-        home: HomePage(),
+        home: LoginPage(),
       ),
     );
   }
