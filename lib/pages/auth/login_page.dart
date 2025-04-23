@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                     buttonName: "Login",
                     color: Color(0xffc8e6c9),
                     onPressed: () async {
-                      final validate = ValidatorLoginService(
+                      final validate = ValidateLoginService(
                         email: emailController.text,
                         password: passwordController.text,
                         context: context,

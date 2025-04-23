@@ -3,12 +3,12 @@ import 'package:marketplace/utils/error/saffold_messenger_error.dart';
 import 'package:marketplace/utils/validation/validator_email.dart';
 import 'package:marketplace/utils/validation/validator_password.dart';
 
-class ValidatorLoginService {
+class ValidateLoginService {
   String email;
   String password;
   BuildContext context;
 
-  ValidatorLoginService({
+  ValidateLoginService({
     required this.email,
     required this.password,
     required this.context,

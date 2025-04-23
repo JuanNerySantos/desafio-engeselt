@@ -53,7 +53,9 @@ class _HomePageState extends State<HomePage> {
               HomeTextButtonStyled(
                 nameButton: "Sair do aplicativo",
                 icon: Icons.exit_to_app,
-                functionPage: () => LoginPage(),
+                functionPage: () {
+                  return LoginPage();
+                },
                 color: const Color(0xFFF44336),
               ),
             ],
