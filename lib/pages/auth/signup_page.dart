@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace/pages/home/home_page.dart';
+import 'package:marketplace/services/validate_sigunp.dart';
 import 'package:marketplace/ui/components/text_button_styled.dart';
 import 'package:marketplace/ui/components/text_field_styled.dart';
 import 'package:marketplace/utils/list_states.dart';
@@ -39,7 +40,7 @@ class _SignUpPageState extends State<SignUpPage> {
     text: "",
   );
 
-  List authCreate = [];
+  List<Map<String, String>> authCreate = [];
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +75,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
                 TextFieldStyled(
                   hintText: "E-mail",
-                  icon: Icons.store,
+                  icon: Icons.email,
                   obscureText: false,
                   controller: emailController,
                 ),
@@ -126,7 +127,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: Text(state),
                           );
                         }).toList(),
-                    onChanged: (String? newValue) {
+                    onChanged: (newValue) {
                       setState(() {
                         _selectedState = newValue;
                       });
@@ -193,24 +194,30 @@ class _SignUpPageState extends State<SignUpPage> {
                   buttonName: "Cadastrar",
                   color: Color(0xffc8e6c9),
                   onPressed: () {
-                    authCreate.addAll([
-                      nameStoreController.text,
-                      latlongController.text,
-                      cepController.text,
-                      streetController.text,
-                      cityController.text,
-                      neighborhoodController.text,
-                      passwordController.text,
-                      confirmPasswordController.text,
-                      controllerPhone,
-                      _selectedState,
-                    ]);
-                    setState(() {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
-                      );
-                    });
+                    final validate = ValidateSigunpService(
+                      nameStore: nameStoreController.text,
+                      email: emailController.text,
+                      latlong: latlongController.text,
+                      cep: cepController.text,
+                      street: streetController.text,
+                      city: cityController.text,
+                      neighborhood: neighborhoodController.text,
+                      password: passwordController.text,
+                      confirmPassword: confirmPasswordController.text,
+                      phone: controllerPhone.text,
+                      selectedState: _selectedState.toString(),
+                      context: context,
+                    );
+
+                    if (validate.validatorSigunp()) {
+                      setState(() {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomePage()),
+                        );
+                      });
+                    }
+                    authCreate.clear();
                   },
                 ),
                 SizedBox(height: 20),
