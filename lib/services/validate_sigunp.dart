@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketplace/repository/get_store_by_email.dart';
 import 'package:marketplace/repository/insert_store.dart';
 import 'package:marketplace/utils/error/saffold_messenger_error.dart';
 import 'package:marketplace/utils/validation/validator_email.dart';
@@ -54,7 +55,14 @@ class ValidateSigunpService {
         validatorField(isValid[i]);
       }
 
-      await validatorEmail(email);
+      validatorEmail(email);
+
+      //Validate email exist
+      final emailExist = await getStoreByEmailRepository(email);
+
+      if (emailExist != null) {
+        throw Exception("O e-mail $email já está em uso!");
+      }
 
       validatorPassword(password);
 
