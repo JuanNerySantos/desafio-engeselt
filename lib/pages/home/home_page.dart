@@ -4,6 +4,7 @@ import 'package:marketplace/pages/auth/login_page.dart';
 import 'package:marketplace/pages/auth/profile_details_page.dart';
 import 'package:marketplace/pages/navegation/search_page.dart';
 import 'package:marketplace/pages/terms/terms_privacy_page.dart';
+import 'package:marketplace/ui/components/category_bar.dart';
 import 'package:marketplace/ui/components/home_text_button_styled.dart';
 
 class HomePage extends StatefulWidget {
@@ -61,49 +62,63 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: PageView(
-                controller: controller,
-                onPageChanged: (index) {
-                  setState(() {
-                    indexPage = index;
-                  });
-                },
-                children: [Container(), Container(), SearchPage(), Container()],
+        body: SizedBox(
+          height: double.infinity,
+          child: Column(
+            children: [
+              SizedBox(height: 15),
+              Categorybar(),
+
+              Expanded(
+                child: PageView(
+                  controller: controller,
+                  onPageChanged: (index) {
+                    setState(() {
+                      indexPage = index;
+                    });
+                  },
+                  children: [
+                    Container(),
+                    Container(),
+                    SearchPage(),
+                    Container(),
+                  ],
+                ),
               ),
-            ),
-            BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              backgroundColor: Color(0xff6b4226),
-              selectedItemColor: Color(0xffc8e6c9),
-              unselectedItemColor: Color(0xfff8bbd0),
-              onTap: (index) {
-                controller.jumpToPage(index);
-              },
-              currentIndex: indexPage,
-              items: [
-                BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
-                BottomNavigationBarItem(
-                  label: "Adicionar",
-                  icon: Icon(Icons.add_box_rounded),
-                ),
-                BottomNavigationBarItem(
-                  label: "Procurar",
-                  icon: Icon(Icons.search),
-                ),
-                BottomNavigationBarItem(
-                  label: "Favoritos",
-                  icon: Icon(Icons.favorite),
-                ),
-                BottomNavigationBarItem(
-                  label: "Postagem",
-                  icon: Icon(Icons.person),
-                ),
-              ],
-            ),
-          ],
+              BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                backgroundColor: Color(0xff6b4226),
+                selectedItemColor: Color(0xffc8e6c9),
+                unselectedItemColor: Color(0xfff8bbd0),
+                onTap: (index) {
+                  controller.jumpToPage(index);
+                },
+                currentIndex: indexPage,
+                items: [
+                  BottomNavigationBarItem(
+                    label: "Home",
+                    icon: Icon(Icons.home),
+                  ),
+                  BottomNavigationBarItem(
+                    label: "Adicionar",
+                    icon: Icon(Icons.add_box_rounded),
+                  ),
+                  BottomNavigationBarItem(
+                    label: "Procurar",
+                    icon: Icon(Icons.search),
+                  ),
+                  BottomNavigationBarItem(
+                    label: "Favoritos",
+                    icon: Icon(Icons.favorite),
+                  ),
+                  BottomNavigationBarItem(
+                    label: "Postagem",
+                    icon: Icon(Icons.person),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
