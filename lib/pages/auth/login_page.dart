@@ -76,8 +76,9 @@ class _LoginPageState extends State<LoginPage> {
                         password: passwordController.text,
                         context: context,
                       );
+                      bool isValidLogin = await validate.validatorLogin();
 
-                      if (validate.validatorLogin()) {
+                      if (isValidLogin) {
                         setState(() {
                           Navigator.pushReplacement(
                             context,
