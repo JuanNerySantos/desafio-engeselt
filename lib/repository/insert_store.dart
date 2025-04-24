@@ -27,10 +27,10 @@ class InsertStoreReository {
   });
 
   Future<bool> insertStoreDb() async {
-    final connectionDb = AppDb();
+    final db = AppDb();
 
-    await connectionDb
-        .into(connectionDb.storeData)
+    await db
+        .into(db.storeData)
         .insert(
           StoreDataCompanion(
             nameStore: Value(nameStore),
