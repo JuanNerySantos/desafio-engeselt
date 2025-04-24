@@ -28,7 +28,9 @@ class $StoreDataTable extends StoreData
   @override
   late final GeneratedColumn<String> email = GeneratedColumn<String>(
       'email', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+      type: DriftSqlType.string,
+      requiredDuringInsert: true,
+      $customConstraints: 'UNIQUE');
   static const VerificationMeta _latlongMeta =
       const VerificationMeta('latlong');
   @override

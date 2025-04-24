@@ -3,7 +3,7 @@ import 'package:drift/drift.dart';
 class StoreData extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get nameStore => text().named('name_store')();
-  TextColumn get email => text().named('email')();
+  TextColumn get email => text().named('email').customConstraint('UNIQUE')();
   TextColumn get latlong => text().named('lat_long')();
   TextColumn get cep => text().named('cep')();
   TextColumn get street => text().named('street')();
