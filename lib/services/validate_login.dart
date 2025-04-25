@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace/repository/get_store_by_email.dart';
 import 'package:marketplace/utils/error/saffold_messenger_error.dart';
+import 'package:marketplace/utils/save_email_logged.dart';
 import 'package:marketplace/utils/validation/validator_email.dart';
 
 class ValidateLoginService {
@@ -25,6 +26,8 @@ class ValidateLoginService {
       if (store?.password.toString() != password) {
         throw Exception("E-mail ou senha está incorreto");
       }
+
+      await saveEmailLogged(email);
 
       return true;
     } catch (e) {
