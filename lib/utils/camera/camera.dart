@@ -1,15 +1,17 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:image_picker/image_picker.dart';
 
 // Função para capturar imagem da câmera
-Future<List<XFile>?> pickImageFromCamera() async {
+Future<String> pickImageFromCamera() async {
   final ImagePicker picker = ImagePicker();
-  final XFile? pickedFile = await picker.pickImage(source: ImageSource.camera);
-  final List<XFile> listPicker = [];
+  final XFile? photo = await picker.pickImage(source: ImageSource.camera);
 
-  if (pickedFile != null) {
-    listPicker.add(pickedFile);
-    return listPicker;
+  if (photo != null) {
+    final bytes = await File(photo.path).readAsBytes();
+    return base64Encode(bytes);
   } else {
-    return null;
+    return "";
   }
 }
