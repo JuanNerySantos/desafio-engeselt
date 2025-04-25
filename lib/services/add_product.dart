@@ -20,7 +20,7 @@ class AddProductService {
     required this.context,
   });
 
-  Future<bool> insertProduct() async {
+  Future<void> insertProduct() async {
     try {
       if (images.isEmpty) {
         throw Exception('Campo Imagem não enviado');
@@ -53,11 +53,8 @@ class AddProductService {
           duration: Duration(seconds: 4),
         ),
       );
-
-      return true;
     } catch (e) {
       messageError(e.toString(), context);
-      return false;
     }
   }
 }
