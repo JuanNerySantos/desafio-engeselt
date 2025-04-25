@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
-import 'package:marketplace/data/drift/Store_data.dart';
+import 'package:marketplace/data/drift/product_data.dart';
+import 'package:marketplace/data/drift/store_data.dart';
+import 'package:marketplace/utils/list_convert.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 
@@ -17,10 +19,22 @@ LazyDatabase _openConnection() {
   });
 }
 
-@DriftDatabase(tables: [StoreData])
+@DriftDatabase(tables: [StoreData, Product])
 class AppDb extends _$AppDb {
   AppDb() : super(_openConnection());
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
+
+  @override
+  MigrationStrategy get migration => MigrationStrategy(
+    onCreate: (Migrator m) => m.createAll(),
+    onUpgrade: (Migrator m, int from, int to) async {
+      if (from == 1) {
+        await m.createTable(
+          product,
+        ); // nome gerado automaticamente para a tabela Product
+      }
+    },
+  );
 }
