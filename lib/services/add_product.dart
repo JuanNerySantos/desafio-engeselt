@@ -34,7 +34,7 @@ class AddProductService {
 
       final store = await getStoreByEmailRepository(email.toString());
 
-      final id = store?.id;
+      final id = store?.id.toString();
 
       final product = InsertProductRepository(
         storeId: id.toString(),
