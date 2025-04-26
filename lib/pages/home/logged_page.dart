@@ -2,26 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:marketplace/pages/auth/help_page.dart';
 import 'package:marketplace/pages/auth/login_page.dart';
 import 'package:marketplace/pages/auth/profile_details_page.dart';
+import 'package:marketplace/pages/navegation/add_product_page.dart';
+import 'package:marketplace/pages/navegation/home_page.dart';
 import 'package:marketplace/pages/navegation/search_page.dart';
 import 'package:marketplace/pages/terms/terms_privacy_page.dart';
 import 'package:marketplace/ui/components/category_bar.dart';
 import 'package:marketplace/ui/components/home_text_button_styled.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class LoggedPage extends StatefulWidget {
+  const LoggedPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<LoggedPage> createState() => _LoggedPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _LoggedPageState extends State<LoggedPage> {
   int indexPage = 0;
   PageController controller = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text("DoceHub")),
+        appBar:
+            indexPage == 0
+                ? AppBar(title: Text("DoceHub"))
+                : null, // ← Oculta nas outras páginas),
         endDrawer: Drawer(
           backgroundColor: Color(0xfff8bbd0),
           child: Column(
@@ -62,13 +67,19 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        body: SizedBox(
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment(0.8, 1),
+              colors: <Color>[Color(0xfff8bbd0), Color(0xfffff3e0)],
+            ),
+          ),
           height: double.infinity,
           child: Column(
             children: [
               SizedBox(height: 15),
-              Categorybar(),
-
+              if (indexPage == 0) Categorybar(),
               Expanded(
                 child: PageView(
                   controller: controller,
@@ -78,8 +89,8 @@ class _HomePageState extends State<HomePage> {
                     });
                   },
                   children: [
-                    Container(),
-                    Container(),
+                    HomePage(),
+                    AddProductPage(),
                     SearchPage(),
                     Container(),
                   ],
