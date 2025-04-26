@@ -25,6 +25,7 @@ class _AddProductPageState extends State<AddProductPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('Cadastrar produto')),
       body: Container(
         width: double.infinity,
         decoration: const BoxDecoration(
@@ -42,7 +43,7 @@ class _AddProductPageState extends State<AddProductPage> {
             ),
             child: Column(
               children: [
-                SizedBox(height: 20),
+                SizedBox(height: 100),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     shape: const CircleBorder(),
