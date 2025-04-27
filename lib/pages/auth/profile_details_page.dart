@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:marketplace/pages/auth/login_page.dart';
+import 'package:marketplace/services/delete_store.dart';
 import 'package:marketplace/services/update_store.dart';
 import 'package:marketplace/ui/components/text_button_styled.dart';
 import 'package:marketplace/ui/components/text_field_styled.dart';
@@ -173,26 +175,68 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
               ),
               const SizedBox(height: 20),
 
-              TextButtonStyled(
-                buttonName: "Alterar",
-                color: Color(0xffc8e6c9),
-                onPressed: () async {
-                  final update = UpdateStoreService(
-                    context: context,
-                    cep: cepController.text,
-                    city: cityController.text,
-                    email: emailController.text,
-                    nameStore: nameStoreController.text,
-                    latlong: latlongController.text,
-                    neighborhood: neighborhoodController.text,
-                    password: passwordController.text,
-                    phone: controllerPhone.text,
-                    selectedState: selectedState,
-                    street: streetController.text,
-                  );
-                  await update.updateStore();
-                },
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButtonStyled(
+                      buttonName: "Alterar",
+                      color: Color(0xffc8e6c9),
+                      onPressed: () async {
+                        final update = UpdateStoreService(
+                          context: context,
+                          cep: cepController.text,
+                          city: cityController.text,
+                          email: emailController.text,
+                          nameStore: nameStoreController.text,
+                          latlong: latlongController.text,
+                          neighborhood: neighborhoodController.text,
+                          password: passwordController.text,
+                          phone: controllerPhone.text,
+                          selectedState: selectedState,
+                          street: streetController.text,
+                        );
+                        await update.updateStore();
+                      },
+                    ),
+
+                    InkWell(
+                      onTap: () async {
+                        final delete = DeleteStoreService(context: context);
+
+                        final storeIsDeleted = await delete.deleteStore();
+
+                        if (storeIsDeleted == true) {
+                          setState(() {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return LoginPage();
+                                },
+                              ),
+                            );
+                          });
+                        }
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(8),
+
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                        child: Text(
+                          'Excluir conta',
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
+
               SizedBox(height: 20),
             ],
           ),
