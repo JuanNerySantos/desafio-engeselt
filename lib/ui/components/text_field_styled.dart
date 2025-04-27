@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 
 class TextFieldStyled extends StatelessWidget {
   final String hintText;
-  final IconData icon;
+  final IconData? icon;
   final IconData? suffixIcon;
   final bool obscureText;
   final TextEditingController? controller;
+  final void Function(String)? onChanged;
 
   const TextFieldStyled({
     super.key,
     required this.hintText,
-    required this.icon,
+    this.icon,
     required this.obscureText,
     required this.controller,
+    this.onChanged,
     this.suffixIcon,
   });
 
@@ -21,6 +23,7 @@ class TextFieldStyled extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 30),
       child: TextField(
+        onChanged: onChanged,
         controller: controller,
         obscureText: obscureText,
         decoration: InputDecoration(
