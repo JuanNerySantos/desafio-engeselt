@@ -16,10 +16,10 @@ class ListProductService {
           final int id = int.tryParse(product.storeId) ?? 0;
 
           final StoreDataData? store = await getStoreByIdRepository(id);
-
           result.add({
             'name': product.nameProduct,
             'price': product.price,
+            'description': product.description,
             'image': product.image,
             'store': {
               'nameStore': store?.nameStore,
@@ -39,6 +39,7 @@ class ListProductService {
             'name': product.nameProduct,
             'price': product.price,
             'image': product.image,
+            'description': product.description,
             'store': {
               'nameStore': store?.nameStore,
               'cep': store?.cep,
@@ -46,6 +47,7 @@ class ListProductService {
               'phone': store?.phone,
               'neighborhood': store?.neighborhood,
               'street': store?.street,
+              'state': store?.selectedState,
             },
           });
         }
