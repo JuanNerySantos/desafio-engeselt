@@ -76,6 +76,7 @@ class _AddProductPageState extends State<AddProductPage> {
                     hintText: 'Preço',
                     controller: priceController,
                     obscureText: false,
+                    textInputType: TextInputType.number,
                   ),
                 ),
                 SizedBox(height: 20),

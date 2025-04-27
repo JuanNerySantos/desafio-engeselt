@@ -4,6 +4,7 @@ import 'package:marketplace/services/store/validate_sigunp.dart';
 import 'package:marketplace/ui/components/password_field.dart';
 import 'package:marketplace/ui/components/text_button_styled.dart';
 import 'package:marketplace/ui/components/text_field_styled.dart';
+import 'package:marketplace/utils/error/saffold_messenger_error.dart';
 import 'package:marketplace/utils/list_states.dart';
 import 'package:marketplace/utils/localization/get_coodinates.dart';
 import 'package:marketplace/utils/mask_phone.dart';
@@ -93,36 +94,41 @@ class _SignUpPageState extends State<SignUpPage> {
 
                 TextFieldStyled(
                   hintText: "CEP",
+                  textInputType: TextInputType.number,
                   icon: Icons.place,
                   obscureText: false,
                   controller: cepController,
                   onChanged: (cepController) async {
                     if (cepController.length == 8) {
-                      String adress = await searchAdress(cepController);
-                      adressList = adress.split(',');
-                      final latLngExist = await getCoordinatesFromCep(
-                        cepController,
-                      );
-                      latLng = latLngExist!;
+                      try {
+                        String adress = await searchAdress(cepController);
+                        adressList = adress.split(',');
+                        final latLngExist = await getCoordinatesFromCep(
+                          cepController,
+                        );
+                        latLng = latLngExist!;
 
-                      setState(() {
-                        if (brazilianStates.contains(adressList[3])) {
-                          _selectedState = adressList[3];
-                          stateHint = adressList[3];
-                        } else {
-                          _selectedState = null;
-                          stateHint = "Estado";
-                        }
+                        setState(() {
+                          if (brazilianStates.contains(adressList[3])) {
+                            _selectedState = adressList[3];
+                            stateHint = adressList[3];
+                          } else {
+                            _selectedState = null;
+                            stateHint = "Estado";
+                          }
 
-                        streetHint = adressList[0];
-                        streetController.text = adressList[0];
+                          streetHint = adressList[0];
+                          streetController.text = adressList[0];
 
-                        neighborhoodController.text = adressList[1];
-                        neighborhoodHint = adressList[1];
+                          neighborhoodController.text = adressList[1];
+                          neighborhoodHint = adressList[1];
 
-                        cityController.text = adressList[2];
-                        cityHint = adressList[2];
-                      });
+                          cityController.text = adressList[2];
+                          cityHint = adressList[2];
+                        });
+                      } catch (e) {
+                        messageError(e.toString(), context);
+                      }
                     }
                   },
                 ),
