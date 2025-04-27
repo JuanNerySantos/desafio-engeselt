@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace/data/drift/db_connection/app_db.dart';
-import 'package:marketplace/repository/get_product_by_store.dart';
-import 'package:marketplace/repository/get_store_by_email.dart';
+import 'package:marketplace/repository/products/get_product_by_store.dart';
+import 'package:marketplace/repository/store/get_store_by_email.dart';
 import 'package:marketplace/utils/error/saffold_messenger_error.dart';
 import 'package:marketplace/utils/save_email_logged.dart';
 

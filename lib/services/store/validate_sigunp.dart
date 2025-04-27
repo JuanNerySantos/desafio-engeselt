@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace/repository/get_store_by_email.dart';
-import 'package:marketplace/repository/insert_store.dart';
+import 'package:marketplace/repository/store/get_store_by_email.dart';
+import 'package:marketplace/repository/store/insert_store.dart';
 import 'package:marketplace/utils/error/saffold_messenger_error.dart';
 import 'package:marketplace/utils/save_email_logged.dart';
 import 'package:marketplace/utils/validation/validator_email.dart';

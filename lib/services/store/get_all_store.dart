@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:marketplace/data/drift/db_connection/app_db.dart';
-import 'package:marketplace/repository/get_all_store.dart';
+import 'package:marketplace/repository/store/get_all_store.dart';
 import 'package:marketplace/utils/error/saffold_messenger_error.dart';
 
 class GetAllStoresService {

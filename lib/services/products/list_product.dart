@@ -1,6 +1,6 @@
 import 'package:marketplace/data/drift/db_connection/app_db.dart';
-import 'package:marketplace/repository/get_all_product.dart';
-import 'package:marketplace/repository/get_store_by_id.dart';
+import 'package:marketplace/repository/products/get_all_product.dart';
+import 'package:marketplace/repository/store/get_store_by_id.dart';
 
 class ListProductService {
   Future<List<Map<String, dynamic>>> listProductData(

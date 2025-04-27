@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:marketplace/repository/update_product.dart';
+import 'package:marketplace/repository/products/update_product.dart';
 import 'package:marketplace/utils/error/saffold_messenger_error.dart';
 
 class UpdateProductService {

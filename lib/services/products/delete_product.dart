@@ -1,4 +1,4 @@
-import 'package:marketplace/repository/delete.product.dart';
+import 'package:marketplace/repository/products/delete_product.dart';
 
 class DeleteProductService {
   int id;
