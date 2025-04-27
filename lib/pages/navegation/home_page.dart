@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
             final product = products[index];
 
             return Card(
+              color: Color(0xFFC9733A),
               margin: const EdgeInsets.only(bottom: 16),
               child: Padding(
                 padding: const EdgeInsets.all(16),

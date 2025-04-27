@@ -149,7 +149,7 @@ class _SearchPageState extends State<SearchPage> {
                         () => StoreMarker(
                           position: initialCenter,
                           store: storeMarkers.first.store,
-                        ), // fallback para não quebrar
+                        ),
                   );
 
                   _mapController.move(

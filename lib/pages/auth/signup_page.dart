@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace/pages/home/home_page.dart';
+import 'package:marketplace/pages/home/logged_page.dart';
 import 'package:marketplace/services/validate_sigunp.dart';
+import 'package:marketplace/ui/components/password_field.dart';
 import 'package:marketplace/ui/components/text_button_styled.dart';
 import 'package:marketplace/ui/components/text_field_styled.dart';
 import 'package:marketplace/utils/list_states.dart';
+import 'package:marketplace/utils/localization/get_coodinates.dart';
 import 'package:marketplace/utils/mask_phone.dart';
+import 'package:marketplace/utils/search_adress.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -15,6 +18,13 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   String? _selectedState;
+
+  List<String> adressList = [];
+  String latLng = '';
+  String streetHint = "Rua";
+  String neighborhoodHint = "Bairro";
+  String cityHint = "Cidade";
+  String stateHint = "Estado";
 
   final TextEditingController nameStoreController = TextEditingController(
     text: "",
@@ -82,23 +92,44 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(height: 20),
 
                 TextFieldStyled(
-                  hintText: "Latitude e longitude",
-                  icon: Icons.explore,
-                  obscureText: false,
-                  controller: latlongController,
-                ),
-                const SizedBox(height: 20),
-
-                TextFieldStyled(
                   hintText: "CEP",
                   icon: Icons.place,
                   obscureText: false,
                   controller: cepController,
+                  onChanged: (cepController) async {
+                    if (cepController.length == 8) {
+                      String adress = await searchAdress(cepController);
+                      adressList = adress.split(',');
+                      final latLngExist = await getCoordinatesFromCep(
+                        cepController,
+                      );
+                      latLng = latLngExist!;
+
+                      setState(() {
+                        if (brazilianStates.contains(adressList[3])) {
+                          _selectedState = adressList[3];
+                          stateHint = adressList[3];
+                        } else {
+                          _selectedState = null;
+                          stateHint = "Estado";
+                        }
+
+                        streetHint = adressList[0];
+                        streetController.text = adressList[0];
+
+                        neighborhoodController.text = adressList[1];
+                        neighborhoodHint = adressList[1];
+
+                        cityController.text = adressList[2];
+                        cityHint = adressList[2];
+                      });
+                    }
+                  },
                 ),
                 const SizedBox(height: 20),
 
                 TextFieldStyled(
-                  hintText: "Nome da rua(com número)",
+                  hintText: streetHint,
                   icon: Icons.edit_location_alt,
                   obscureText: false,
                   controller: streetController,
@@ -116,7 +147,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         borderRadius: BorderRadius.circular(30),
                         borderSide: BorderSide.none,
                       ),
-                      labelText: "Estado",
+                      labelText: stateHint,
                       prefixIcon: Icon(Icons.map, color: Color(0xff6b4226)),
                     ),
                     value: _selectedState,
@@ -137,7 +168,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(height: 20),
 
                 TextFieldStyled(
-                  hintText: "Cidade",
+                  hintText: cityHint,
                   icon: Icons.location_city,
                   obscureText: false,
                   controller: cityController,
@@ -145,7 +176,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(height: 20),
 
                 TextFieldStyled(
-                  hintText: "Bairro",
+                  hintText: neighborhoodHint,
                   icon: Icons.location_city,
                   obscureText: false,
                   controller: neighborhoodController,
@@ -172,20 +203,14 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 const SizedBox(height: 20),
 
-                TextFieldStyled(
+                PasswordField(
                   hintText: "Senha",
-                  icon: Icons.lock,
-                  suffixIcon: Icons.visibility,
-                  obscureText: true,
                   controller: passwordController,
                 ),
                 const SizedBox(height: 20),
 
-                TextFieldStyled(
+                PasswordField(
                   hintText: "Confirmar seha",
-                  icon: Icons.visibility,
-                  suffixIcon: Icons.visibility,
-                  obscureText: true,
                   controller: confirmPasswordController,
                 ),
                 const SizedBox(height: 20),
@@ -193,27 +218,37 @@ class _SignUpPageState extends State<SignUpPage> {
                 TextButtonStyled(
                   buttonName: "Cadastrar",
                   color: Color(0xffc8e6c9),
-                  onPressed: () {
+                  onPressed: () async {
                     final validate = ValidateSigunpService(
                       nameStore: nameStoreController.text,
                       email: emailController.text,
-                      latlong: latlongController.text,
+                      latlong: latLng.toString(),
                       cep: cepController.text,
-                      street: streetController.text,
-                      city: cityController.text,
-                      neighborhood: neighborhoodController.text,
+                      street:
+                          streetController.text.isEmpty
+                              ? streetHint
+                              : streetController.text,
+                      city:
+                          cityController.text.isEmpty
+                              ? cityHint
+                              : cityController.text,
+                      neighborhood:
+                          neighborhoodController.text.isEmpty
+                              ? neighborhoodHint
+                              : neighborhoodController.text,
                       password: passwordController.text,
                       confirmPassword: confirmPasswordController.text,
                       phone: controllerPhone.text,
-                      selectedState: _selectedState.toString(),
+                      selectedState: _selectedState ?? "",
                       context: context,
                     );
+                    bool validateIstrue = await validate.validatorSigunp();
 
-                    if (validate.validatorSigunp()) {
+                    if (validateIstrue) {
                       setState(() {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
+                          MaterialPageRoute(builder: (context) => LoggedPage()),
                         );
                       });
                     }

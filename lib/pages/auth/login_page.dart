@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:marketplace/pages/auth/signup_page.dart';
 import 'package:marketplace/pages/home/logged_page.dart';
 import 'package:marketplace/services/validate_login.dart';
+import 'package:marketplace/ui/components/password_field.dart';
 import 'package:marketplace/ui/components/text_button_styled.dart';
 import 'package:marketplace/ui/components/text_field_styled.dart';
 
@@ -58,11 +59,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 30),
 
-                  TextFieldStyled(
-                    hintText: "Password",
-                    icon: Icons.lock,
-                    suffixIcon: Icons.visibility,
-                    obscureText: true,
+                  PasswordField(
+                    hintText: "Senha",
                     controller: passwordController,
                   ),
                   const SizedBox(height: 30),
