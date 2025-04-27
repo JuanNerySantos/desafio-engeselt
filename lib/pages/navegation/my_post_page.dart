@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:marketplace/data/drift/db_connection/app_db.dart';
+import 'package:marketplace/services/delete_product.dart';
 import 'package:marketplace/services/get_product_by_store.dart';
 import 'package:marketplace/ui/components/form_update.dart';
 
@@ -33,16 +34,9 @@ class _PostPageState extends State<MyPostPage> {
           itemBuilder: (context, index) {
             final product = products[index];
 
-            return InkWell(
-              onTap: () {
-                final id = products[index].id;
-
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => FormUpdate(id: id)),
-                );
-              },
+            return Container(
               child: Card(
+                color: Color(0xFFC9733A),
                 margin: const EdgeInsets.only(bottom: 16),
                 child: Padding(
                   padding: const EdgeInsets.all(16),
@@ -72,6 +66,54 @@ class _PostPageState extends State<MyPostPage> {
                       Text(
                         product.description.toString(),
                         style: const TextStyle(fontSize: 15),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              final id = products[index].id;
+
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => FormUpdate(id: id),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(8),
+
+                              decoration: BoxDecoration(
+                                color: Color(0xffc8e6c9),
+                                borderRadius: BorderRadius.circular(40),
+                              ),
+                              child: Text(
+                                'Editar',
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              final id = products[index].id;
+                              DeleteProductService(id: id).deleteProduct();
+                              setState(() {});
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(8),
+
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(40),
+                              ),
+                              child: Text(
+                                'Excluir',
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
