@@ -17,7 +17,7 @@ class _PostPageState extends State<MyPostPage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<ProductData>?>(
-      future: GetProductByStoreService().getProductByStore(),
+      future: GetProductByStoreService(context: context).getProductByStore(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
