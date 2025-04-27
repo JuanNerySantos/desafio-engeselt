@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Map<String, dynamic>>>(
-      future: ListProductService().listProductData(),
+      future: ListProductService().listProductData(''),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -39,16 +39,8 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Exibe apenas a primeira imagem (melhor desempenho)
-                    Image.memory(
-                      base64Decode(_limparBase64(product['image'][0])),
-                      width: double.infinity,
-                      height: 200,
-                      fit: BoxFit.cover,
-                      errorBuilder:
-                          (context, error, stackTrace) =>
-                              const Text('Erro ao carregar imagem'),
-                    ),
+                    // Exibe todas as imagens
+                    Column(children: _getImages(product['image'])),
                     const SizedBox(height: 8),
                     Text(
                       product['name'].toString(),
@@ -64,7 +56,6 @@ class _HomePageState extends State<HomePage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
                     Text(
                       'R\$ ${product['price'].toString()}',
                       style: const TextStyle(fontSize: 16),
@@ -79,7 +70,32 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  List<Widget> _getImages(dynamic base64List) {
+    try {
+      if (base64List is List) {
+        return base64List.map<Widget>((img) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Image.memory(
+              base64Decode(_limparBase64(img)),
+              width: double.infinity,
+              height: 200,
+              fit: BoxFit.cover,
+              errorBuilder:
+                  (context, error, stackTrace) =>
+                      const Text('Erro ao carregar imagem'),
+            ),
+          );
+        }).toList();
+      } else {
+        return [const Text('Nenhuma imagem encontrada')];
+      }
+    } catch (e) {
+      return [const Text('Erro ao carregar imagens')];
+    }
+  }
+
   String _limparBase64(String base64Str) {
-    return base64Str.contains(',') ? base64Str.split(',').last : base64Str;
+    return base64Str.trim();
   }
 }
