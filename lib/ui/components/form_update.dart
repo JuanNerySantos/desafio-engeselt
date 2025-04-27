@@ -95,6 +95,7 @@ class _FormUpdateState extends State<FormUpdate> {
                   onPressed: () async {
                     final product = UpdateProductService(
                       image: listPhoto,
+                      context: context,
                       description: descriptionController.text,
                       nameProduct: prodctController.text,
                       price: priceController.text,

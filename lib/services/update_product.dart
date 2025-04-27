@@ -1,7 +1,10 @@
+import 'package:flutter/widgets.dart';
 import 'package:marketplace/repository/update_product.dart';
+import 'package:marketplace/utils/error/saffold_messenger_error.dart';
 
 class UpdateProductService {
   final int id;
+  final BuildContext context;
   final String? nameProduct;
   final String? price;
   final String? description;
@@ -9,6 +12,7 @@ class UpdateProductService {
 
   UpdateProductService({
     required this.id,
+    required this.context,
     this.nameProduct,
     this.price,
     this.description,
@@ -16,12 +20,16 @@ class UpdateProductService {
   });
 
   void updateProduct() {
-    updateProductRepository(
-      id,
-      description: description,
-      image: image,
-      nameProduct: nameProduct,
-      price: price,
-    );
+    try {
+      updateProductRepository(
+        id,
+        description: description,
+        image: image,
+        nameProduct: nameProduct,
+        price: price,
+      );
+    } catch (e) {
+      messageError(e.toString(), context);
+    }
   }
 }
