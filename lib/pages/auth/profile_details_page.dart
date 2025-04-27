@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketplace/services/update_store.dart';
 import 'package:marketplace/ui/components/text_button_styled.dart';
 import 'package:marketplace/ui/components/text_field_styled.dart';
 import 'package:marketplace/utils/list_states.dart';
@@ -60,7 +61,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                 hintText: "Nome da loja",
                 icon: Icons.store,
                 obscureText: false,
-                controller: SearchController(),
+                controller: nameStoreController,
               ),
               const SizedBox(height: 20),
 
@@ -175,7 +176,22 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
               TextButtonStyled(
                 buttonName: "Alterar",
                 color: Color(0xffc8e6c9),
-                onPressed: () {},
+                onPressed: () async {
+                  final update = UpdateStoreService(
+                    context: context,
+                    cep: cepController.text,
+                    city: cityController.text,
+                    email: emailController.text,
+                    nameStore: nameStoreController.text,
+                    latlong: latlongController.text,
+                    neighborhood: neighborhoodController.text,
+                    password: passwordController.text,
+                    phone: controllerPhone.text,
+                    selectedState: selectedState,
+                    street: streetController.text,
+                  );
+                  await update.updateStore();
+                },
               ),
               SizedBox(height: 20),
             ],
