@@ -4,6 +4,7 @@ import 'package:marketplace/pages/auth/login_page.dart';
 import 'package:marketplace/pages/auth/profile_details_page.dart';
 import 'package:marketplace/pages/navegation/add_product_page.dart';
 import 'package:marketplace/pages/navegation/home_page.dart';
+import 'package:marketplace/pages/navegation/my_post_page.dart';
 import 'package:marketplace/pages/navegation/search_page.dart';
 import 'package:marketplace/pages/terms/terms_privacy_page.dart';
 import 'package:marketplace/ui/components/category_bar.dart';
@@ -92,7 +93,7 @@ class _LoggedPageState extends State<LoggedPage> {
                     HomePage(),
                     AddProductPage(),
                     SearchPage(),
-                    Container(),
+                    MyPostPage(),
                   ],
                 ),
               ),
@@ -117,10 +118,6 @@ class _LoggedPageState extends State<LoggedPage> {
                   BottomNavigationBarItem(
                     label: "Procurar",
                     icon: Icon(Icons.search),
-                  ),
-                  BottomNavigationBarItem(
-                    label: "Favoritos",
-                    icon: Icon(Icons.favorite),
                   ),
                   BottomNavigationBarItem(
                     label: "Postagem",

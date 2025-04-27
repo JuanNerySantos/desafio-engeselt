@@ -57,8 +57,7 @@ class UpdateStoreService {
       final emailLogged = await getEmailLogged() ?? '';
 
       final emailExist = await getStoreByEmailRepository(email!);
-      print(emailExist);
-      print("_____________________________________________________________");
+
       if (emailExist != null) {
         throw Exception("E-mail já existe");
       }
