@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketplace/pages/auth/reset_password_page.dart';
 import 'package:marketplace/pages/auth/signup_page.dart';
 import 'package:marketplace/pages/home/logged_page.dart';
 import 'package:marketplace/services/validate_login.dart';
@@ -105,7 +106,16 @@ class _LoginPageState extends State<LoginPage> {
 
                   TextButtonStyled(
                     buttonName: "Esqueci a senha",
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ResetPasswordPage(),
+                          ),
+                        );
+                      });
+                    },
                   ),
                 ],
               ),
