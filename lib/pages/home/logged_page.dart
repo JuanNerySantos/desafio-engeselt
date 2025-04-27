@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:marketplace/pages/auth/help_page.dart';
 import 'package:marketplace/pages/auth/login_page.dart';
 import 'package:marketplace/pages/auth/profile_details_page.dart';
+import 'package:marketplace/pages/auth/reset_password_page.dart';
 import 'package:marketplace/pages/navegation/add_product_page.dart';
 import 'package:marketplace/pages/navegation/home_page.dart';
 import 'package:marketplace/pages/navegation/my_post_page.dart';
@@ -60,7 +61,17 @@ class _LoggedPageState extends State<LoggedPage> {
                 nameButton: "Sair do aplicativo",
                 icon: Icons.exit_to_app,
                 functionPage: () {
-                  return LoginPage();
+                  setState(() {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return LoginPage();
+                        },
+                      ),
+                    );
+                  });
+                  return ResetPasswordPage();
                 },
                 color: const Color(0xFFF44336),
               ),

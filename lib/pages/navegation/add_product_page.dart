@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace/services/add_product.dart';
+import 'package:marketplace/services/products/add_product.dart';
 import 'package:marketplace/ui/components/text_button_styled.dart';
 import 'package:marketplace/ui/components/text_field_styled.dart';
 import 'package:marketplace/utils/camera/camera.dart';

@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:marketplace/data/drift/db_connection/app_db.dart';
-import 'package:marketplace/services/delete_product.dart';
-import 'package:marketplace/services/get_product_by_store.dart';
+import 'package:marketplace/services/products/delete_product.dart';
+import 'package:marketplace/services/products/get_product_by_store.dart';
 import 'package:marketplace/ui/components/form_update.dart';
 
 class MyPostPage extends StatefulWidget {
