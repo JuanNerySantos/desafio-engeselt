@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:marketplace/services/get_all_store.dart';
-import 'package:marketplace/services/store_maker.dart';
+import 'package:marketplace/services/store/get_all_store.dart';
+import 'package:marketplace/services/store/store_maker.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});

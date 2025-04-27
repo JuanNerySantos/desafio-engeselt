@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace/pages/home/logged_page.dart';
-import 'package:marketplace/services/reset_password.dart';
+import 'package:marketplace/services/store/reset_password.dart';
 import 'package:marketplace/ui/components/password_field.dart';
 import 'package:marketplace/ui/components/text_button_styled.dart';
 import 'package:marketplace/ui/components/text_field_styled.dart';

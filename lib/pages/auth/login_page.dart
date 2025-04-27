@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:marketplace/pages/auth/reset_password_page.dart';
 import 'package:marketplace/pages/auth/signup_page.dart';
 import 'package:marketplace/pages/home/logged_page.dart';
-import 'package:marketplace/services/validate_login.dart';
+import 'package:marketplace/services/store/validate_login.dart';
 import 'package:marketplace/ui/components/password_field.dart';
 import 'package:marketplace/ui/components/text_button_styled.dart';
 import 'package:marketplace/ui/components/text_field_styled.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace/pages/auth/login_page.dart';
-import 'package:marketplace/services/delete_store.dart';
-import 'package:marketplace/services/update_store.dart';
+import 'package:marketplace/services/store/delete_store.dart';
+import 'package:marketplace/services/store/update_store.dart';
 import 'package:marketplace/ui/components/password_field.dart';
 import 'package:marketplace/ui/components/text_button_styled.dart';
 import 'package:marketplace/ui/components/text_field_styled.dart';
