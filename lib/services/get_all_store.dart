@@ -1,15 +1,26 @@
+import 'package:flutter/widgets.dart';
 import 'package:marketplace/data/drift/db_connection/app_db.dart';
 import 'package:marketplace/repository/get_all_store.dart';
+import 'package:marketplace/utils/error/saffold_messenger_error.dart';
 
 class GetAllStoresService {
+  final BuildContext context;
+
+  GetAllStoresService({required this.context});
+
   Future<List<StoreDataData>> getAllStores() async {
-    final stores = await getAllStoreRepository();
-    List<StoreDataData> listStore = [];
+    try {
+      final stores = await getAllStoreRepository();
+      List<StoreDataData> listStore = [];
 
-    for (var store in stores) {
-      listStore.add(store);
+      for (var store in stores) {
+        listStore.add(store);
+      }
+
+      return listStore;
+    } catch (e) {
+      messageError(e.toString(), context);
+      return [];
     }
-
-    return listStore;
   }
 }

@@ -26,7 +26,7 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   Future<void> _loadStoreLatLngs() async {
-    final stores = await GetAllStoresService().getAllStores();
+    final stores = await GetAllStoresService(context: context).getAllStores();
 
     List<StoreMarker> tempMarkers = [];
 
