@@ -16,7 +16,7 @@ class _SearchPageState extends State<SearchPage> {
 
   final TextEditingController searchController = TextEditingController();
   List<LatLng> storeLatLngs = [];
-  LatLng initialCenter = LatLng(-23.5505, -46.6333);
+  LatLng initialCenter = LatLng(-7.1715, -34.86228);
   List<StoreMarker> storeMarkers = [];
 
   @override
@@ -85,26 +85,90 @@ class _SearchPageState extends State<SearchPage> {
                               context: context,
                               builder:
                                   (context) => AlertDialog(
-                                    title: Text(storeMarker.store.nameStore),
+                                    title: Text(
+                                      storeMarker.store.nameStore,
+                                      style: TextStyle(
+                                        color: Color(0xff6b4226),
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    backgroundColor: Color.fromARGB(
+                                      255,
+                                      192,
+                                      168,
+                                      176,
+                                    ),
                                     content: Container(
                                       height: double.infinity,
                                       padding: EdgeInsets.symmetric(
                                         horizontal: 10,
                                       ),
                                       child: Column(
-                                        // mainAxisAlignment: ,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            'Endereço: \n${storeMarker.store.cep}',
+                                            'Loja',
+                                            style: TextStyle(
+                                              color: Color(0xff6b4226),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                           Text(
-                                            'Telefone: \n${storeMarker.store.phone}',
+                                            storeMarker.store.nameStore,
+                                            style: TextStyle(
+                                              color: Color(0xff6b4226),
+                                              fontSize: 17,
+                                            ),
+                                          ),
+
+                                          Text(
+                                            'Telefone',
+                                            style: TextStyle(
+                                              color: Color(0xff6b4226),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                           Text(
-                                            'Estado: \n${storeMarker.store.city}',
+                                            storeMarker.store.phone,
+                                            style: TextStyle(
+                                              color: Color(0xff6b4226),
+                                              fontSize: 17,
+                                            ),
+                                          ),
+
+                                          Text(
+                                            'Endereço',
+                                            style: TextStyle(
+                                              color: Color(0xff6b4226),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                           Text(
-                                            'Rua: \n${storeMarker.store.street}',
+                                            '${storeMarker.store.street}, \n ${storeMarker.store.neighborhood}, ${storeMarker.store.city}, ${storeMarker.store.selectedState}',
+                                            style: TextStyle(
+                                              color: Color(0xff6b4226),
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                          Text(
+                                            'Cep',
+                                            style: TextStyle(
+                                              color: Color(0xff6b4226),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            storeMarker.store.cep,
+                                            style: TextStyle(
+                                              color: Color(0xff6b4226),
+                                              fontSize: 17,
+                                            ),
                                           ),
                                         ],
                                       ),

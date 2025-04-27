@@ -70,7 +70,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
               children: [
                 SizedBox(height: 30),
                 Text(
-                  "Casdastre-se",
+                  "Atualizar dados",
                   style: TextStyle(fontSize: 30, color: Color(0xff6b4226)),
                 ),
                 const SizedBox(height: 20),

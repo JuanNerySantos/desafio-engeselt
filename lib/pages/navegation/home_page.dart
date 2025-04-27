@@ -31,37 +31,157 @@ class _HomePageState extends State<HomePage> {
           itemCount: products.length,
           itemBuilder: (context, index) {
             final product = products[index];
+            return InkWell(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder:
+                      (context) => AlertDialog(
+                        backgroundColor: Color.fromARGB(255, 192, 168, 176),
+                        title: Text(
+                          product['name'].toString(),
+                          style: TextStyle(
+                            color: Color(0xff6b4226),
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        content: Container(
+                          height: double.infinity,
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Loja',
+                                style: TextStyle(
+                                  color: Color(0xff6b4226),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                product['store']['nameStore'].toString(),
+                                style: TextStyle(
+                                  color: Color(0xff6b4226),
+                                  fontSize: 17,
+                                ),
+                              ),
+                              Text(
+                                'Telefone',
+                                style: TextStyle(
+                                  color: Color(0xff6b4226),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                product['store']['phone'],
+                                style: TextStyle(
+                                  color: Color(0xff6b4226),
+                                  fontSize: 17,
+                                ),
+                              ),
+                              Text(
+                                'Endereço',
+                                style: TextStyle(
+                                  color: Color(0xff6b4226),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                '${product['store']['street'].toString()},\n ${product['store']['neighborhood'].toString()},${product['store']['city'].toString()},${product['store']['state'].toString()}',
+                                style: TextStyle(
+                                  color: Color(0xff6b4226),
+                                  fontSize: 15,
+                                ),
+                              ),
+                              Text(
+                                'Cep',
+                                style: TextStyle(
+                                  color: Color(0xff6b4226),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                product['store']['cep'],
+                                style: TextStyle(
+                                  color: Color(0xff6b4226),
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: Text('Fechar'),
+                          ),
+                        ],
+                      ),
+                );
+              },
+              child: Card(
+                color: Color.fromARGB(135, 237, 123, 47),
+                margin: const EdgeInsets.only(bottom: 16),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Exibe todas as imagens
+                      Column(children: _getImages(product['image'])),
+                      const SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            product['name'].toString(),
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
 
-            return Card(
-              color: Color(0xFFC9733A),
-              margin: const EdgeInsets.only(bottom: 16),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Exibe todas as imagens
-                    Column(children: _getImages(product['image'])),
-                    const SizedBox(height: 8),
-                    Text(
-                      product['name'].toString(),
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                          Text(
+                            'R\$ ${product['price'].toString()}',
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    Text(
-                      product['store']['nameStore'].toString(),
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+
+                      Row(
+                        children: [
+                          Text(
+                            product['store']['nameStore'].toString(),
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(width: 20),
+                          Text(
+                            product['store']['phone'].toString(),
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    Text(
-                      'R\$ ${product['price'].toString()}',
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                  ],
+
+                      Text(
+                        product['description'].toString(),
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );

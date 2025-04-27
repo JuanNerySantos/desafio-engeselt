@@ -67,6 +67,7 @@ class _PostPageState extends State<MyPostPage> {
                         product.description.toString(),
                         style: const TextStyle(fontSize: 15),
                       ),
+                      SizedBox(height: 15),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

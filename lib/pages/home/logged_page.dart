@@ -7,7 +7,6 @@ import 'package:marketplace/pages/navegation/home_page.dart';
 import 'package:marketplace/pages/navegation/my_post_page.dart';
 import 'package:marketplace/pages/navegation/search_page.dart';
 import 'package:marketplace/pages/terms/terms_privacy_page.dart';
-import 'package:marketplace/ui/components/category_bar.dart';
 import 'package:marketplace/ui/components/home_text_button_styled.dart';
 
 class LoggedPage extends StatefulWidget {
@@ -80,7 +79,6 @@ class _LoggedPageState extends State<LoggedPage> {
           child: Column(
             children: [
               SizedBox(height: 15),
-              if (indexPage == 0) Categorybar(),
               Expanded(
                 child: PageView(
                   controller: controller,
