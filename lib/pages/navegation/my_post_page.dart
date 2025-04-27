@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:marketplace/data/drift/db_connection/app_db.dart';
 import 'package:marketplace/services/get_product_by_store.dart';
+import 'package:marketplace/ui/components/form_update.dart';
 
 class MyPostPage extends StatefulWidget {
   const MyPostPage({super.key});
@@ -35,6 +36,11 @@ class _PostPageState extends State<MyPostPage> {
             return InkWell(
               onTap: () {
                 final id = products[index].id;
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => FormUpdate(id: id)),
+                );
               },
               child: Card(
                 margin: const EdgeInsets.only(bottom: 16),
